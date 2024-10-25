@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ topic.capitalize() }} Test</title>
+</head>
+<body>
+    <h1>{{ topic.capitalize() }} Test</h1>
+    <form id="testForm">
+        {% for question in questions %}
+            <p>Q{{ loop.index }}: {{ question }}</p>
+            <input type="text" name="answer{{ loop.index }}" required><br>
+        {% endfor %}
+    </form>
+    
+    {% if is_last_test %}
+        <button type="button" onclick="submitTest(true)">Submit Final Test</button>
+    {% else %}
+        <button type="button" onclick="submitTest(false)">Next Test</button>
+    {% endif %}
+
+    <script>
+        function submitTest(isLastTest) {
+            const answers = {};
+            const inputs = document.querySelectorAll('#testForm input');
+            inputs.forEach((input, idx) => {
+                answers[`answer${idx + 1}`] = input.value;
+            });
+
+            fetch(`/test/{{ topic }}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(answers)
+            })
+            .then(response => response.json())
+            .then(data => {
+                window.location.href = data.redirect_url;
+            });
+        }
+    </script>
+</body>
+</html>
