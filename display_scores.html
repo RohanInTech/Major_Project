@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Subject for Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            font-size: 24px;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+        }
+        .content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .content h1 {
+            color: #333;
+            margin-bottom: 2rem;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: space-around;
+        }
+        .btn {
+            background-color: #007BFF;
+            color: white;
+            padding: 15px 30px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .btn:focus {
+            outline: none;
+        }
+        .footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #007BFF;
+            color: white;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        Student Performance Analysis
+    </div>
+    <div class="container">
+        <div class="content">
+            <h1>Select a Subject for Score Analysis</h1>
+            <div class="btn-container">
+                <a href="{{ url_for('arithmetic_score') }}" class="btn">Arithmetic</a>
+                <a href="{{ url_for('algebra_score') }}" class="btn">Algebra</a>
+                <a href="{{ url_for('geometry_score') }}" class="btn">Geometry</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        &copy; 2024 Student Performance System
+    </div>
+</body>
+</html>
